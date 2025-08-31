@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: django-app
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      python download_model.py
+    startCommand: gunicorn myproject.wsgi:application --timeout 120
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: myproject.settings
+      - key: PYTHON_VERSION
+        value: 3.11

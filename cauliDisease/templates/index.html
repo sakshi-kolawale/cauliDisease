@@ -1,0 +1,292 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CauliGuard - Cauliflower Disease Detection</title>
+  <link rel="icon" type="image/png" href="{% static 'img/app-logo.png' %}">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+  <script>
+    // Refresh the page every 10 minutes (600000 ms)
+    setInterval(function() {
+      fetch(window.location.href, { cache: "no-store" });
+    }, 600000); // 10 minutes
+  </script>
+
+
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#"><img src="{% static 'img/logo.png' %}" alt="CauliGuard Logo"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <!-- <li class="nav-item"><a class="nav-link" href="#">Upload</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Results</a></li> -->
+        <li class="nav-item"><a class="nav-link" href="#about-us">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="#help">Help</a></li>
+        <!-- <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-person-circle"></i> Profile</a></li> -->
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <img src="{% static 'img/hero-bg.png' %}" alt="Hero Banner" class="hero-banner">
+  <div class="hero-container text-center">
+      <h2 class="mt-2">CauliGuard</h2>
+      <p class="lead">Your Reliable Cauliflower Disease Prediction System</p>
+
+      <!-- Image Upload Form -->
+      <form id="uploadForm" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="file" id="imageInput" name="image" accept="image/*" class="d-none">
+          
+          <div class="d-flex justify-content-center gap-4 mt-3">
+              <button type="button" class="btn btn-outline-success upload-btn btn-custom" onclick="document.getElementById('imageInput').click();">
+                  <i class="bi bi-upload"></i> Upload Image Here
+              </button>
+              <button type="submit" class="btn btn-success check-results-btn px-5">Check Results</button>
+          </div>
+      </form>
+  </div>
+</section>
+
+  
+
+  <!-- About Us -->
+  <section id="about-us" class="about-section">
+    <div class="container">
+      <h2 class="text-center">About Us</h2>
+      <p class="text-center tagline">Revolutionizing Agriculture with AI-Powered Disease Detection</p>
+      <div class="row">
+        <div class="col-md-6">
+          <img src="{% static 'img/about-us.jpg' %}" alt="About Us" class="img-fluid rounded">
+        </div>
+        <div class="col-md-6">
+          <h3>Our Mission</h3>
+          <p>At <strong>CauliGuard</strong>, we empower farmers with AI-driven technology to detect cauliflower diseases efficiently. Our goal is to enhance crop health, reduce losses, and promote sustainable farming.</p>
+
+          <h3>Why Choose Us?</h3>
+          <ul>
+            <li><strong>AI-Powered Precision</strong></li>
+            <li><strong>Real-Time Analysis</strong></li>
+            <li><strong>User-Friendly Platform</strong></li>
+            <li><strong>Sustainable Farming</strong></li>
+          </ul>
+
+          <h3>Our Vision</h3>
+          <p>We aim to make AI-driven disease detection a standard practice for farmers worldwide, ensuring food security and better crop management.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Help Section -->
+  <section id="help" class="help-section">
+    <div class="container">
+      <h2 class="text-center">Help & FAQ</h2>
+      <p class="text-center tagline">Find answers to common questions</p>
+
+      <!-- FAQ Accordion -->
+      <div class="accordion" id="faqAccordion">
+        <!-- Question 1 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              How does CauliGuard detect diseases?
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              CauliGuard uses AI and machine learning to analyze images of cauliflower plants and detect diseases based on trained models.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              What image format is supported?
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              The system supports commonly used image formats such as JPEG, PNG, and BMP.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              How long does it take to get results?
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Results are generated within seconds after uploading the image, depending on internet speed and image size.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              Is CauliGuard free to use?
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes, CauliGuard provides free access to farmers. However, premium features may be available in the future.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Chatbot Floating Button -->
+  <div id="chat-button" class="chat-button">
+    <i class="bi bi-chat-dots"></i>
+    <span>Chat Here</span>
+  </div>
+
+  <!-- Chatbot Container -->
+  <div id="chatbot-container" class="chatbot-container">
+    <div class="chatbot-header">
+      <h5>AI Chatbot</h5>
+      <button id="chatbot-close" class="close-btn">&times;</button>
+    </div>
+    <div id="chatbot-messages" class="chatbot-messages">
+      <div class="bot-message">
+        <p>👋 Hi! How can I assist you today?</p>
+      </div>
+    </div>
+    <div class="chatbot-input-container">
+      <input type="text" id="chatbot-input" placeholder="Type your message...">
+      <button id="chatbot-send"><i class="bi bi-send"></i><span>Send</span></button>
+    </div>
+  </div>
+  
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <p>&copy; 2025 CauliGuard. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const chatbotToggle = document.getElementById("chat-button");
+    const chatbotContainer = document.getElementById("chatbot-container");
+    const chatbotClose = document.getElementById("chatbot-close");
+    const chatbotMessages = document.getElementById("chatbot-messages");
+    const chatbotInput = document.getElementById("chatbot-input");
+    const chatbotSend = document.getElementById("chatbot-send");
+
+    // Show/Hide Chatbot
+    chatbotToggle.addEventListener("click", () => {
+        chatbotContainer.style.display = "flex";
+    });
+
+    chatbotClose.addEventListener("click", () => {
+        chatbotContainer.style.display = "none";
+    });
+
+    // Send Message Function
+    chatbotSend.addEventListener("click", sendMessage);
+    chatbotInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") sendMessage();
+    });
+
+    async function sendMessage() {
+        let userText = chatbotInput.value.trim();
+        if (userText === "") return;
+
+        // Append User Message
+        appendMessage("user", userText);
+        chatbotInput.value = "";
+
+        // Show typing indicator
+        let thinkingMessage = appendMessage("bot", "🤖 Thinking...");
+
+        try {
+            let botResponse = await getAIResponse(userText);
+
+            // Remove the "Thinking..." message
+            thinkingMessage.remove();
+
+            // Append AI-generated Response
+            appendMessage("bot", botResponse);
+        } catch (error) {
+            thinkingMessage.remove();
+            appendMessage("bot", "⚠️ Error: Unable to get response.");
+            console.error("AI API Error:", error);
+        }
+    }
+
+    // Function to Fetch AI Response from OpenRouter API
+    async function getAIResponse(userInput) {
+        const API_KEY = "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"; // Replace with your OpenRouter API key
+        const API_URL = "https://openrouter.ai/api/v1/chat/completions";
+
+        const requestBody = {
+            model: "openai/gpt-3.5-turbo",
+            messages: [
+                { role: "system", content: "You are an AI assistant for CauliGard, an AI-enabled Cauliflower Disease Prediction and Remedial System. Your primary role is to assist users by providing insights on cauliflower plant health, identifying diseases from symptoms, suggesting preventive measures, and recommending treatments. If a query is unrelated to cauliflower disease prediction and remedies, politely decline to answer." },
+                { role: "user", content: userInput }
+            ]
+        };
+
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${API_KEY}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        const data = await response.json();
+        return data.choices?.[0]?.message?.content || "No response received.";
+    }
+
+    function appendMessage(sender, text) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("chat-message", sender === "bot" ? "bot-message" : "user-message");
+
+        messageDiv.innerHTML = `<p>${text}</p>`;
+        chatbotMessages.appendChild(messageDiv);
+
+        // Auto-scroll to latest message
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+        return messageDiv;
+    }
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        img {
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            max-width: 100%;
+            margin-bottom: 15px;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Results</h1>
+        <p><strong>Image:</strong></p>
+        <img src="{{ uploaded_image.image.url }}" alt="Uploaded Image">
+        <p><strong>Disease Detected:</strong> {{ uploaded_image.prediction }}</p>
+        <a href="/" class="btn">Upload Another Image</a>
+    </div>
+</body>
+</html>
